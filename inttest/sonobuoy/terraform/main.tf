@@ -24,7 +24,6 @@ resource "null_resource" "controller" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo ttt",
       "sudo chmod +x /home/ubuntu/gh.sh",
       "sudo /home/ubuntu/gh.sh",
       "sudo nohup k0s server --enable-worker >/home/ubuntu/k0s-master.log 2>&1 &",
@@ -101,7 +100,6 @@ resource "null_resource" "configure_worker2" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'tada'",
       "sudo chmod +x /home/ubuntu/gh.sh",
       "sudo /home/ubuntu/gh.sh",
       "sudo chmod +x /home/ubuntu/startworker.sh",
