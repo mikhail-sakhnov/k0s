@@ -33,7 +33,7 @@ func DefaultCalico() *Calico {
 		VxlanVNI:         4096,
 		MTU:              1450,
 		EnableWireguard:  false,
-		WithWindowsNodes: false,
+		WithWindowsNodes: true,
 	}
 }
 
@@ -44,7 +44,7 @@ func (c *Calico) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	c.VxlanVNI = 4096
 	c.MTU = 1450
 	c.EnableWireguard = false
-	c.WithWindowsNodes = false
+	c.WithWindowsNodes = true
 
 	type ycalico Calico
 	yc := (*ycalico)(c)
