@@ -5,20 +5,30 @@ import (
 	"net/http"
 	"net/url"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/sirupsen/logrus"
 	"go.etcd.io/etcd/pkg/transport"
 )
 
+var initGuard = sync.Once{}
+var etcdClient *Client
+
 // CheckEtcdReady returns true if etcd responds to the metrics endpoint with a status code of 200
 func CheckEtcdReady(certDir string, etcdCertDir string) error {
-	c, err := NewClient(certDir, etcdCertDir)
+
+	var err error
+
+	initGuard.Do(func() {
+		etcdClient, err = NewClient(certDir, etcdCertDir)
+	})
+
 	if err != nil {
 		logrus.Errorf("failed to initialize etcd client: %v", err)
 		return err
 	}
-	memberList, err := c.client.MemberList(context.Background())
+	memberList, err := etcdClient.client.MemberList(context.Background())
 	if err != nil {
 		logrus.Errorf("failed to fetch etcd member list: %v\n", err)
 		return err
