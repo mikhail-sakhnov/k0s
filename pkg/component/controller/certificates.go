@@ -293,7 +293,7 @@ func chownFile(file, owner string, permissions os.FileMode) error {
 	if err != nil && os.Geteuid() == 0 {
 		return err
 	}
-	err = os.Chmod(file, permissions)
+	err = util.Chmod(file, permissions)
 	if err != nil && os.Geteuid() == 0 {
 		return err
 	}

@@ -113,7 +113,7 @@ func Stage(dataDir string, name string, filemode os.FileMode) error {
 	if err := copyTo(p, gz); err != nil {
 		return err
 	}
-	if err := os.Chmod(p, 0550); err != nil {
+	if err := util.Chmod(p, 0550); err != nil {
 		return errors.Wrapf(err, "Failed to chmod %s", name)
 	}
 	return nil
