@@ -29,6 +29,7 @@ func NewStartCmd() *cobra.Command {
 		Use:   "start",
 		Short: "Start the k0s service configured on this host. Must be run as root (or with sudo)",
 		RunE: func(cmd *cobra.Command, args []string) error {
+
 			if os.Geteuid() != 0 {
 				return fmt.Errorf("this command must be run as root")
 			}
