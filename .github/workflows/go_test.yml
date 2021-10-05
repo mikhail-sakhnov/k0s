@@ -22,7 +22,6 @@ env:
 jobs:
   smoketest:
     name: Smoke test
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
