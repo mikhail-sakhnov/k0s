@@ -93,7 +93,7 @@ jobs:
           name: k0s-${{env.cachePrefix}}
           path: k0s         
   call-workflow-1:
-    uses: soider/k0s/.github/workflows/go_test.yml
+    uses: soider/k0s/.github/workflows/go_test.yml@HEAD
   # build_windows:
   #   name: Build windows
   #   runs-on: ubuntu-latest
