@@ -87,7 +87,7 @@ jobs:
             k0s
           key: build-${{env.cachePrefix}}
 
-       - name: Archive code coverage results
+      - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
           name: k0s-${{env.cachePrefix}}
