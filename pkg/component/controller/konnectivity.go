@@ -193,10 +193,11 @@ func (k *Konnectivity) Stop() error {
 }
 
 type konnectivityAgentConfig struct {
-	APIAddress string
-	AgentPort  int64
-	Image      string
-	PullPolicy string
+	APIAddress             string
+	AgentPort              int64
+	Image                  string
+	PullPolicy             string
+	TunneledNetworkingMode bool
 }
 
 func (k *Konnectivity) writeKonnectivityAgent() error {
@@ -205,12 +206,12 @@ func (k *Konnectivity) writeKonnectivityAgent() error {
 	if err != nil {
 		return err
 	}
-
 	cfg := konnectivityAgentConfig{
-		APIAddress: k.NodeConfig.Spec.API.APIAddress(),
-		AgentPort:  k.clusterConfig.Spec.Konnectivity.AgentPort,
-		Image:      k.clusterConfig.Spec.Images.Konnectivity.URI(),
-		PullPolicy: k.clusterConfig.Spec.Images.DefaultPullPolicy,
+		APIAddress:             k.NodeConfig.Spec.API.APIAddress(),
+		AgentPort:              k.clusterConfig.Spec.Konnectivity.AgentPort,
+		Image:                  k.clusterConfig.Spec.Images.Konnectivity.URI(),
+		PullPolicy:             k.clusterConfig.Spec.Images.DefaultPullPolicy,
+		TunneledNetworkingMode: k.clusterConfig.Spec.API.TunneledNetworkingMode,
 	}
 
 	if cfg == k.previousConfig {
@@ -221,13 +222,8 @@ func (k *Konnectivity) writeKonnectivityAgent() error {
 	tw := templatewriter.TemplateWriter{
 		Name:     "konnectivity-agent",
 		Template: konnectivityAgentTemplate,
-		Data: konnectivityAgentConfig{
-			APIAddress: k.NodeConfig.Spec.API.APIAddress(),
-			AgentPort:  k.clusterConfig.Spec.Konnectivity.AgentPort,
-			Image:      k.clusterConfig.Spec.Images.Konnectivity.URI(),
-			PullPolicy: k.clusterConfig.Spec.Images.DefaultPullPolicy,
-		},
-		Path: filepath.Join(konnectivityDir, "konnectivity-agent.yaml"),
+		Data:     cfg,
+		Path:     filepath.Join(konnectivityDir, "konnectivity-agent.yaml"),
 	}
 	err = tw.Write()
 	if err != nil {
@@ -335,11 +331,18 @@ spec:
       tolerations:
         - key: "CriticalAddonsOnly"
           operator: "Exists"
+        {{ if .TunneledNetworkingMode }}
+        - operator: Exists
+        {{ end }}
+      {{ if .TunneledNetworkingMode }}
+      hostNetwork: true
+      {{ end }}
       containers:
         - image: {{ .Image }}
           imagePullPolicy: {{ .PullPolicy }}
           name: konnectivity-agent
           command: ["/proxy-agent"]
+
           args: [
                   "--logtostderr=true",
                   "--ca-cert=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt",
