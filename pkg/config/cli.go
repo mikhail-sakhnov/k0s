@@ -161,7 +161,7 @@ func AvailableComponents() []string {
 func GetControllerFlags() *pflag.FlagSet {
 	flagset := &pflag.FlagSet{}
 
-	flagset.StringVarP(&CfgFile, "config", "c", "/etc/k0s/k0s.yaml", "config file, use '-' to read the config from stdin [ Default: /etc/k0s/k0s.yaml ]")
+	flagset.StringVarP(&CfgFile, "config", "c", "/etc/k0s/k0s.yaml", "config file, use '-' to read the config from stdin")
 	flagset.StringVar(&workerOpts.WorkerProfile, "profile", "default", "worker profile to use on the node")
 	flagset.BoolVar(&controllerOpts.EnableWorker, "enable-worker", false, "enable worker (default false)")
 	flagset.StringSliceVar(&controllerOpts.DisableComponents, "disable-components", []string{}, "disable components (valid items: "+strings.Join(AvailableComponents()[:], ",")+")")

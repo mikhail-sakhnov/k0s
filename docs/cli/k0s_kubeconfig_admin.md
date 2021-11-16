@@ -6,34 +6,36 @@ Display Admin's Kubeconfig file
 
 Print kubeconfig for the Admin user to stdout
 
-```shell
+```
 k0s kubeconfig admin [command] [flags]
 ```
 
 ### Examples
 
-```shell
-k0s kubeconfig admin > ~/.kube/config
-export KUBECONFIG=~/.kube/config
-kubectl get nodes
+```
+	$ k0s kubeconfig admin > ~/.kube/config
+	$ export KUBECONFIG=~/.kube/config
+	$ kubectl get nodes
 ```
 
 ### Options
 
-```shell
+```
   -h, --help   help for admin
 ```
 
 ### Options inherited from parent commands
 
-```shell
-  -c, --config string            config file (default: ./k0s.yaml)
-      --data-dir string          Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
-  -d, --debug                    Debug logging (default: false)
-      --debugListenOn string     Http listenOn for debug pprof handler (default ":6060")
-  -l, --logging stringToString   Logging Levels for the different components (default [konnectivity-server=1,kube-apiserver=1,kube-controller-manager=1,kube-scheduler=1,kubelet=1,kube-proxy=1,etcd=info,containerd=info])
+```
+      --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
+  -d, --debug                          Debug logging (default: false)
+      --debugListenOn string           Http listenOn for Debug pprof handler (default ":6060")
+      --log-flush-frequency duration   Maximum number of seconds between log flushes (default 5s)
+      --status-socket string           Full file path to the socket file. (default "/var/lib/k0s/run/status.sock")
+      --version version[=true]         Print version information and quit
 ```
 
 ### SEE ALSO
 
-* [k0s kubeconfig](k0s_kubeconfig.md) - Create a kubeconfig file for a specified user
+* [k0s kubeconfig](k0s_kubeconfig.md)	 - Create a kubeconfig file for a specified user
+
