@@ -71,6 +71,9 @@ type ClientConfigLoadingRules struct {
 	// RuntimeConfigPath is an optional field indicating the location of the runtime config file (default: /run/k0s/k0s.yaml)
 	// this parameter is mainly used for testing purposes, to override the default location on local dev system
 	RuntimeConfigPath string
+
+	// CfgFileOverride is an optional field for overriding the CfgFile parameter from cobra. Used mainly for testing purposes.
+	CfgFileOverride string
 }
 
 func (rules *ClientConfigLoadingRules) BootstrapConfig() (*v1beta1.ClusterConfig, error) {
@@ -112,6 +115,10 @@ func (rules *ClientConfigLoadingRules) IsDefaultConfig() bool {
 }
 
 func (rules *ClientConfigLoadingRules) Load() (*v1beta1.ClusterConfig, error) {
+	if rules.CfgFileOverride != "" {
+		CfgFile = rules.CfgFileOverride
+	}
+
 	if rules.Nodeconfig {
 		return rules.fetchNodeConfig()
 	}

@@ -36,6 +36,9 @@ var (
 
 // readRuntimeConfig returns the configuration from the runtime configuration file
 func (rules *ClientConfigLoadingRules) readRuntimeConfig() (clusterConfig *v1beta1.ClusterConfig, err error) {
+	if rules.RuntimeConfigPath == "" {
+		rules.RuntimeConfigPath = runtimeConfigPathDefault
+	}
 	clusterConfig, err = v1beta1.ConfigFromFile(rules.RuntimeConfigPath, "")
 	if err != nil {
 		return nil, err
@@ -128,8 +131,8 @@ func (rules *ClientConfigLoadingRules) readFromStdin() (filePath string, err err
 }
 
 func (rules *ClientConfigLoadingRules) copyConfig(path string) error {
-	// link the config file to /run/k0s/k0s.yaml
 	logrus.Infof("using config path: %s", path)
+
 	err := file.Copy(path, rules.RuntimeConfigPath)
 	if err != nil {
 		return fmt.Errorf("failed to copy k0s config to %s (%v): %v", K0sVars.RunDir, rules.RuntimeConfigPath, err)

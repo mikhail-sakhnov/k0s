@@ -46,7 +46,7 @@ type ClusterConfigReconciler struct {
 
 // NewClusterConfigReconciler creates a new clusterConfig reconciler
 func NewClusterConfigReconciler(cfgFile string, leaderElector LeaderElector, k0sVars constant.CfgVars, mgr *component.Manager, s manifestsSaver, kubeClientFactory kubeutil.ClientFactoryInterface, configSource clusterconfig.ConfigSource) (*ClusterConfigReconciler, error) {
-	cfg, err := v1beta1.GetYamlFromFile(cfgFile, k0sVars)
+	cfg, err := v1beta1.ConfigFromFile(cfgFile, k0sVars.DataDir)
 	if err != nil {
 		return nil, err
 	}
