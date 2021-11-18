@@ -2,25 +2,25 @@
 
 List image names and version needed for air-gap install
 
-```
+```shell
 k0s airgap list-images [flags]
 ```
 
 ### Examples
 
-```
+```shell
 k0s airgap list-images
 ```
 
 ### Options
 
-```
+```shell
   -h, --help   help for list-images
 ```
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
   -d, --debug                          Debug logging (default: false)
       --debugListenOn string           Http listenOn for Debug pprof handler (default ":6060")
@@ -31,5 +31,4 @@ k0s airgap list-images
 
 ### SEE ALSO
 
-* [k0s airgap](k0s_airgap.md)	 - Manage airgap setup
-
+* [k0s airgap](k0s_airgap.md) - Manage airgap setup

@@ -8,13 +8,13 @@ kubectl controls the Kubernetes cluster manager.
 
  Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
 
-```
+```shell
 k0s kubectl [flags]
 ```
 
 ### Options
 
-```
+```shell
       --add-dir-header                   If true, adds the file directory to the header of the log messages
       --alsologtostderr                  log to standard error as well as files
       --as string                        Username to impersonate for the operation
@@ -55,7 +55,7 @@ k0s kubectl [flags]
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
       --debug                          Debug logging (default: false)
       --log-flush-frequency duration   Maximum number of seconds between log flushes (default 5s)
@@ -64,47 +64,46 @@ k0s kubectl [flags]
 
 ### SEE ALSO
 
-* [k0s](k0s.md)	 - k0s - Zero Friction Kubernetes
-* [k0s kubectl annotate](k0s_kubectl_annotate.md)	 - Update the annotations on a resource
-* [k0s kubectl api-resources](k0s_kubectl_api-resources.md)	 - Print the supported API resources on the server
-* [k0s kubectl api-versions](k0s_kubectl_api-versions.md)	 - Print the supported API versions on the server, in the form of "group/version"
-* [k0s kubectl apply](k0s_kubectl_apply.md)	 - Apply a configuration to a resource by file name or stdin
-* [k0s kubectl attach](k0s_kubectl_attach.md)	 - Attach to a running container
-* [k0s kubectl auth](k0s_kubectl_auth.md)	 - Inspect authorization
-* [k0s kubectl autoscale](k0s_kubectl_autoscale.md)	 - Auto-scale a deployment, replica set, stateful set, or replication controller
-* [k0s kubectl certificate](k0s_kubectl_certificate.md)	 - Modify certificate resources.
-* [k0s kubectl cluster-info](k0s_kubectl_cluster-info.md)	 - Display cluster information
-* [k0s kubectl completion](k0s_kubectl_completion.md)	 - Output shell completion code for the specified shell (bash or zsh)
-* [k0s kubectl config](k0s_kubectl_config.md)	 - Modify kubeconfig files
-* [k0s kubectl cordon](k0s_kubectl_cordon.md)	 - Mark node as unschedulable
-* [k0s kubectl cp](k0s_kubectl_cp.md)	 - Copy files and directories to and from containers
-* [k0s kubectl create](k0s_kubectl_create.md)	 - Create a resource from a file or from stdin
-* [k0s kubectl debug](k0s_kubectl_debug.md)	 - Create debugging sessions for troubleshooting workloads and nodes
-* [k0s kubectl delete](k0s_kubectl_delete.md)	 - Delete resources by file names, stdin, resources and names, or by resources and label selector
-* [k0s kubectl describe](k0s_kubectl_describe.md)	 - Show details of a specific resource or group of resources
-* [k0s kubectl diff](k0s_kubectl_diff.md)	 - Diff the live version against a would-be applied version
-* [k0s kubectl drain](k0s_kubectl_drain.md)	 - Drain node in preparation for maintenance
-* [k0s kubectl edit](k0s_kubectl_edit.md)	 - Edit a resource on the server
-* [k0s kubectl exec](k0s_kubectl_exec.md)	 - Execute a command in a container
-* [k0s kubectl explain](k0s_kubectl_explain.md)	 - Get documentation for a resource
-* [k0s kubectl expose](k0s_kubectl_expose.md)	 - Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
-* [k0s kubectl get](k0s_kubectl_get.md)	 - Display one or many resources
-* [k0s kubectl kustomize](k0s_kubectl_kustomize.md)	 - Build a kustomization target from a directory or URL.
-* [k0s kubectl label](k0s_kubectl_label.md)	 - Update the labels on a resource
-* [k0s kubectl logs](k0s_kubectl_logs.md)	 - Print the logs for a container in a pod
-* [k0s kubectl options](k0s_kubectl_options.md)	 - Print the list of flags inherited by all commands
-* [k0s kubectl patch](k0s_kubectl_patch.md)	 - Update fields of a resource
-* [k0s kubectl plugin](k0s_kubectl_plugin.md)	 - Provides utilities for interacting with plugins
-* [k0s kubectl port-forward](k0s_kubectl_port-forward.md)	 - Forward one or more local ports to a pod
-* [k0s kubectl proxy](k0s_kubectl_proxy.md)	 - Run a proxy to the Kubernetes API server
-* [k0s kubectl replace](k0s_kubectl_replace.md)	 - Replace a resource by file name or stdin
-* [k0s kubectl rollout](k0s_kubectl_rollout.md)	 - Manage the rollout of a resource
-* [k0s kubectl run](k0s_kubectl_run.md)	 - Run a particular image on the cluster
-* [k0s kubectl scale](k0s_kubectl_scale.md)	 - Set a new size for a deployment, replica set, or replication controller
-* [k0s kubectl set](k0s_kubectl_set.md)	 - Set specific features on objects
-* [k0s kubectl taint](k0s_kubectl_taint.md)	 - Update the taints on one or more nodes
-* [k0s kubectl top](k0s_kubectl_top.md)	 - Display resource (CPU/memory) usage
-* [k0s kubectl uncordon](k0s_kubectl_uncordon.md)	 - Mark node as schedulable
-* [k0s kubectl version](k0s_kubectl_version.md)	 - Print the client and server version information
-* [k0s kubectl wait](k0s_kubectl_wait.md)	 - Experimental: Wait for a specific condition on one or many resources
-
+* [k0s](k0s.md) - k0s - Zero Friction Kubernetes
+* [k0s kubectl annotate](k0s_kubectl_annotate.md) - Update the annotations on a resource
+* [k0s kubectl api-resources](k0s_kubectl_api-resources.md) - Print the supported API resources on the server
+* [k0s kubectl api-versions](k0s_kubectl_api-versions.md) - Print the supported API versions on the server, in the form of "group/version"
+* [k0s kubectl apply](k0s_kubectl_apply.md) - Apply a configuration to a resource by file name or stdin
+* [k0s kubectl attach](k0s_kubectl_attach.md) - Attach to a running container
+* [k0s kubectl auth](k0s_kubectl_auth.md) - Inspect authorization
+* [k0s kubectl autoscale](k0s_kubectl_autoscale.md) - Auto-scale a deployment, replica set, stateful set, or replication controller
+* [k0s kubectl certificate](k0s_kubectl_certificate.md) - Modify certificate resources.
+* [k0s kubectl cluster-info](k0s_kubectl_cluster-info.md) - Display cluster information
+* [k0s kubectl completion](k0s_kubectl_completion.md) - Output shell completion code for the specified shell (bash or zsh)
+* [k0s kubectl config](k0s_kubectl_config.md) - Modify kubeconfig files
+* [k0s kubectl cordon](k0s_kubectl_cordon.md) - Mark node as unschedulable
+* [k0s kubectl cp](k0s_kubectl_cp.md) - Copy files and directories to and from containers
+* [k0s kubectl create](k0s_kubectl_create.md) - Create a resource from a file or from stdin
+* [k0s kubectl debug](k0s_kubectl_debug.md) - Create debugging sessions for troubleshooting workloads and nodes
+* [k0s kubectl delete](k0s_kubectl_delete.md) - Delete resources by file names, stdin, resources and names, or by resources and label selector
+* [k0s kubectl describe](k0s_kubectl_describe.md) - Show details of a specific resource or group of resources
+* [k0s kubectl diff](k0s_kubectl_diff.md) - Diff the live version against a would-be applied version
+* [k0s kubectl drain](k0s_kubectl_drain.md) - Drain node in preparation for maintenance
+* [k0s kubectl edit](k0s_kubectl_edit.md) - Edit a resource on the server
+* [k0s kubectl exec](k0s_kubectl_exec.md) - Execute a command in a container
+* [k0s kubectl explain](k0s_kubectl_explain.md) - Get documentation for a resource
+* [k0s kubectl expose](k0s_kubectl_expose.md) - Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
+* [k0s kubectl get](k0s_kubectl_get.md) - Display one or many resources
+* [k0s kubectl kustomize](k0s_kubectl_kustomize.md) - Build a kustomization target from a directory or URL.
+* [k0s kubectl label](k0s_kubectl_label.md) - Update the labels on a resource
+* [k0s kubectl logs](k0s_kubectl_logs.md) - Print the logs for a container in a pod
+* [k0s kubectl options](k0s_kubectl_options.md) - Print the list of flags inherited by all commands
+* [k0s kubectl patch](k0s_kubectl_patch.md) - Update fields of a resource
+* [k0s kubectl plugin](k0s_kubectl_plugin.md) - Provides utilities for interacting with plugins
+* [k0s kubectl port-forward](k0s_kubectl_port-forward.md) - Forward one or more local ports to a pod
+* [k0s kubectl proxy](k0s_kubectl_proxy.md) - Run a proxy to the Kubernetes API server
+* [k0s kubectl replace](k0s_kubectl_replace.md) - Replace a resource by file name or stdin
+* [k0s kubectl rollout](k0s_kubectl_rollout.md) - Manage the rollout of a resource
+* [k0s kubectl run](k0s_kubectl_run.md) - Run a particular image on the cluster
+* [k0s kubectl scale](k0s_kubectl_scale.md) - Set a new size for a deployment, replica set, or replication controller
+* [k0s kubectl set](k0s_kubectl_set.md) - Set specific features on objects
+* [k0s kubectl taint](k0s_kubectl_taint.md) - Update the taints on one or more nodes
+* [k0s kubectl top](k0s_kubectl_top.md) - Display resource (CPU/memory) usage
+* [k0s kubectl uncordon](k0s_kubectl_uncordon.md) - Mark node as schedulable
+* [k0s kubectl version](k0s_kubectl_version.md) - Print the client and server version information
+* [k0s kubectl wait](k0s_kubectl_wait.md) - Experimental: Wait for a specific condition on one or many resources

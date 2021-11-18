@@ -2,26 +2,26 @@
 
 List join tokens
 
-```
+```shell
 k0s token list [flags]
 ```
 
 ### Examples
 
-```
+```shell
 k0s token list --role worker // list worker tokens
 ```
 
 ### Options
 
-```
+```shell
   -h, --help          help for list
       --role string   Either worker, controller or empty for all roles
 ```
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
   -d, --debug                          Debug logging (default: false)
       --debugListenOn string           Http listenOn for Debug pprof handler (default ":6060")
@@ -32,5 +32,4 @@ k0s token list --role worker // list worker tokens
 
 ### SEE ALSO
 
-* [k0s token](k0s_token.md)	 - Manage join tokens
-
+* [k0s token](k0s_token.md) - Manage join tokens

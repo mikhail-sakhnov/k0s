@@ -2,13 +2,13 @@
 
 Output the default k0s configuration yaml to stdout
 
-```
+```shell
 k0s default-config [flags]
 ```
 
 ### Options
 
-```
+```shell
       --debugListenOn string   Http listenOn for Debug pprof handler (default ":6060")
   -h, --help                   help for default-config
       --status-socket string   Full file path to the socket file. (default "/var/lib/k0s/run/status.sock")
@@ -16,7 +16,7 @@ k0s default-config [flags]
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
       --debug                          Debug logging (default: false)
       --log-flush-frequency duration   Maximum number of seconds between log flushes (default 5s)
@@ -25,5 +25,4 @@ k0s default-config [flags]
 
 ### SEE ALSO
 
-* [k0s](k0s.md)	 - k0s - Zero Friction Kubernetes
-
+* [k0s](k0s.md) - k0s - Zero Friction Kubernetes

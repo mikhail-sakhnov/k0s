@@ -2,13 +2,13 @@
 
 Back-Up k0s configuration. Must be run as root (or with sudo)
 
-```
+```shell
 k0s backup [flags]
 ```
 
 ### Options
 
-```
+```shell
       --debugListenOn string   Http listenOn for Debug pprof handler (default ":6060")
   -h, --help                   help for backup
       --save-path string       destination directory path for backup assets
@@ -17,7 +17,7 @@ k0s backup [flags]
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
       --debug                          Debug logging (default: false)
       --log-flush-frequency duration   Maximum number of seconds between log flushes (default 5s)
@@ -26,5 +26,4 @@ k0s backup [flags]
 
 ### SEE ALSO
 
-* [k0s](k0s.md)	 - k0s - Zero Friction Kubernetes
-
+* [k0s](k0s.md) - k0s - Zero Friction Kubernetes

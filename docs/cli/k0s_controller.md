@@ -2,25 +2,25 @@
 
 Run controller
 
-```
+```shell
 k0s controller [join-token] [flags]
 ```
 
 ### Examples
 
-```
-	Command to associate master nodes:
-	CLI argument:
-	$ k0s controller [join-token]
+```shell
+Command to associate master nodes:
+CLI argument:
+$ k0s controller [join-token]
 
-	or CLI flag:
-	$ k0s controller --token-file [path_to_file]
-	Note: Token can be passed either as a CLI argument or as a flag
+or CLI flag:
+$ k0s controller --token-file [path_to_file]
+Note: Token can be passed either as a CLI argument or as a flag
 ```
 
 ### Options
 
-```
+```shell
       --api-server string                              HACK: api-server for the windows worker node
       --cidr-range string                              HACK: cidr range for the windows worker node (default "10.96.0.0/12")
       --cluster-dns string                             HACK: cluster dns for the windows worker node (default "10.96.0.10")
@@ -46,7 +46,7 @@ k0s controller [join-token] [flags]
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
       --debug                          Debug logging (default: false)
       --log-flush-frequency duration   Maximum number of seconds between log flushes (default 5s)
@@ -55,5 +55,4 @@ k0s controller [join-token] [flags]
 
 ### SEE ALSO
 
-* [k0s](k0s.md)	 - k0s - Zero Friction Kubernetes
-
+* [k0s](k0s.md) - k0s - Zero Friction Kubernetes

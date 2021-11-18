@@ -2,24 +2,24 @@
 
 Install k0s controller on a brand-new system. Must be run as root (or with sudo)
 
-```
+```shell
 k0s install controller [flags]
 ```
 
 ### Examples
 
-```
+```shell
 All default values of controller command will be passed to the service stub unless overriden.
 
 With the controller subcommand you can setup a single node cluster by running:
 
-	k0s install controller --single
-	
+k0s install controller --single
+
 ```
 
 ### Options
 
-```
+```shell
       --api-server string                              HACK: api-server for the windows worker node
       --cidr-range string                              HACK: cidr range for the windows worker node (default "10.96.0.0/12")
       --cluster-dns string                             HACK: cluster dns for the windows worker node (default "10.96.0.10")
@@ -43,7 +43,7 @@ With the controller subcommand you can setup a single node cluster by running:
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
   -d, --debug                          Debug logging (default: false)
       --debugListenOn string           Http listenOn for Debug pprof handler (default ":6060")
@@ -54,5 +54,4 @@ With the controller subcommand you can setup a single node cluster by running:
 
 ### SEE ALSO
 
-* [k0s install](k0s_install.md)	 - Install k0s on a brand-new system. Must be run as root (or with sudo)
-
+* [k0s install](k0s_install.md) - Install k0s on a brand-new system. Must be run as root (or with sudo)

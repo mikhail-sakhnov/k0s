@@ -2,13 +2,13 @@
 
 Create join token
 
-```
+```shell
 k0s token create [flags]
 ```
 
 ### Examples
 
-```
+```shell
 k0s token create --role worker --expiry 100h //sets expiration time to 100 hours
 k0s token create --role worker --expiry 10m  //sets expiration time to 10 minutes
 
@@ -16,7 +16,7 @@ k0s token create --role worker --expiry 10m  //sets expiration time to 10 minute
 
 ### Options
 
-```
+```shell
       --expiry string   Expiration time of the token. Format 1.5h, 2h45m or 300ms. (default "0s")
   -h, --help            help for create
       --role string     Either worker or controller (default "worker")
@@ -25,7 +25,7 @@ k0s token create --role worker --expiry 10m  //sets expiration time to 10 minute
 
 ### Options inherited from parent commands
 
-```
+```shell
       --data-dir string                Data Directory for k0s (default: /var/lib/k0s). DO NOT CHANGE for an existing setup, things will break!
   -d, --debug                          Debug logging (default: false)
       --debugListenOn string           Http listenOn for Debug pprof handler (default ":6060")
@@ -36,5 +36,4 @@ k0s token create --role worker --expiry 10m  //sets expiration time to 10 minute
 
 ### SEE ALSO
 
-* [k0s token](k0s_token.md)	 - Manage join tokens
-
+* [k0s token](k0s_token.md) - Manage join tokens
