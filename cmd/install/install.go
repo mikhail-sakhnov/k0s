@@ -57,7 +57,7 @@ func (c *CmdOpts) setup(role string, args []string) error {
 	if role == "controller" {
 		// get k0s config
 		loadingRules := config.ClientConfigLoadingRules{Nodeconfig: true}
-		cfg, err := loadingRules.Load()
+		cfg, err := loadingRules.ParseRuntimeConfig()
 		if err != nil {
 			return err
 		}
@@ -107,14 +107,14 @@ func preRunValidateConfig(_ *cobra.Command, _ []string) error {
 
 	// get k0s config
 	loadingRules := config.ClientConfigLoadingRules{}
-	cfg, err := loadingRules.Load()
+	cfg, err := loadingRules.ParseRuntimeConfig()
 	if err != nil {
-		return err
+		return fmt.Errorf("error in config loading: %v", err)
 	}
 
 	_, err = loadingRules.Validate(cfg, c.K0sVars)
 	if err != nil {
-		return err
+		return fmt.Errorf("error in config validation: %v", err)
 	}
 	return nil
 }

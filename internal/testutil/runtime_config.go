@@ -18,7 +18,11 @@ package testutil
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
+
+	"github.com/sirupsen/logrus"
+	"sigs.k8s.io/yaml"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
@@ -30,7 +34,7 @@ import (
 	"github.com/k0sproject/k0s/pkg/constant"
 )
 
-const runtimeFakePath = "/tmp/k0s.yaml"
+const RuntimeFakePath = "/tmp/k0s.yaml"
 
 var resourceType = v1.TypeMeta{APIVersion: "k0s.k0sproject.io/v1beta1", Kind: "clusterconfigs"}
 
@@ -38,7 +42,6 @@ type ConfigGetter struct {
 	NodeConfig bool
 	YamlData   string
 
-	apiConfig   bool
 	cfgFilePath string
 }
 
@@ -53,7 +56,7 @@ func (c *ConfigGetter) FakeConfigFromFile() (*v1beta1.ClusterConfig, error) {
 	if err != nil {
 		return nil, err
 	}
-	loadingRules := config.ClientConfigLoadingRules{RuntimeConfigPath: runtimeFakePath, Nodeconfig: c.NodeConfig, CfgFileOverride: c.cfgFilePath}
+	loadingRules := config.ClientConfigLoadingRules{RuntimeConfigPath: RuntimeFakePath, Nodeconfig: c.NodeConfig, CfgFileOverride: c.cfgFilePath}
 	return loadingRules.Load()
 }
 
@@ -72,7 +75,7 @@ func (c *ConfigGetter) FakeAPIConfig() (*v1beta1.ClusterConfig, error) {
 	}
 
 	loadingRules := config.ClientConfigLoadingRules{
-		RuntimeConfigPath: runtimeFakePath,
+		RuntimeConfigPath: RuntimeFakePath,
 		Nodeconfig:        c.NodeConfig,
 		CfgFileOverride:   c.cfgFilePath,
 		APIClient:         client.K0sV1beta1(),
@@ -90,10 +93,19 @@ func (c *ConfigGetter) initRuntimeConfig() error {
 
 	c.cfgFilePath = cfgFilePath
 
-	// copy the config-file path to a runtime fake path
-	err = file.Copy(cfgFilePath, runtimeFakePath)
+	logrus.Infof("using config path: %s", cfgFilePath)
+
+	mergedConfig, err := v1beta1.ConfigFromFile(cfgFilePath, "")
 	if err != nil {
-		return fmt.Errorf("failed to copy k0s config to runtime path (%s): %v", runtimeFakePath, err)
+		return fmt.Errorf("unable to parse config from %s: %v", cfgFilePath, err)
+	}
+	data, err := yaml.Marshal(&mergedConfig)
+	if err != nil {
+		return fmt.Errorf("failed to marshal config: %v", err)
+	}
+	err = os.WriteFile(RuntimeFakePath, data, 0755)
+	if err != nil {
+		return fmt.Errorf("failed to write runtime config config to %s: %v", RuntimeFakePath, err)
 	}
 	return nil
 }

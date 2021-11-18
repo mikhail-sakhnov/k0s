@@ -37,7 +37,7 @@ type Loader interface {
 }
 
 type K0sConfigGetter struct {
-	k0sConfigGetter ConfigGetter
+	k0sConfigGetter Getter
 }
 
 func (g *K0sConfigGetter) IsAPIConfig() bool {
@@ -56,7 +56,7 @@ func (g *K0sConfigGetter) Load() (*v1beta1.ClusterConfig, error) {
 	return g.k0sConfigGetter()
 }
 
-type ConfigGetter func() (*v1beta1.ClusterConfig, error)
+type Getter func() (*v1beta1.ClusterConfig, error)
 
 var _ Loader = &ClientConfigLoadingRules{}
 
@@ -99,10 +99,7 @@ func (rules *ClientConfigLoadingRules) ClusterConfig() (*v1beta1.ClusterConfig, 
 }
 
 func (rules *ClientConfigLoadingRules) IsAPIConfig() bool {
-	if controllerOpts.EnableDynamicConfig {
-		return true
-	}
-	return false
+	return controllerOpts.EnableDynamicConfig
 }
 
 func (rules *ClientConfigLoadingRules) IsDefaultConfig() bool {

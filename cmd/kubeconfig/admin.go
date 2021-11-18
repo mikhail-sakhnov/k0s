@@ -43,7 +43,7 @@ func kubeConfigAdminCmd() *cobra.Command {
 				}
 
 				// get k0s config
-				loadingRules := config.ClientConfigLoadingRules{Nodeconfig: true}
+				loadingRules := config.ClientConfigLoadingRules{}
 				cfg, err := loadingRules.Load()
 				if err != nil {
 					return err

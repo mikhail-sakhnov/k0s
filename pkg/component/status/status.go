@@ -60,10 +60,7 @@ func (s *Status) Run(_ context.Context) error {
 // Stop stops status component and removes the unix socket
 func (s *Status) Stop() error {
 	defer os.Remove(s.Socket)
-	if err := s.httpserver.Shutdown(context.TODO()); err != nil {
-		return err
-	}
-	return nil
+	return s.httpserver.Shutdown(context.TODO())
 }
 
 // Reconcile detects changes in configuration and applies them to the component

@@ -78,7 +78,7 @@ Note: A certificate once signed cannot be revoked for a particular user`,
 			username := args[0]
 			c := CmdOpts(config.GetCmdOpts())
 			// get k0s config
-			loadingRules := config.ClientConfigLoadingRules{Nodeconfig: true}
+			loadingRules := config.ClientConfigLoadingRules{}
 			cfg, err := loadingRules.Load()
 			if err != nil {
 				return err

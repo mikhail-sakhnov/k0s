@@ -82,7 +82,7 @@ func preRunValidateConfig(_ *cobra.Command, _ []string) error {
 
 	// get k0s config
 	loadingRules := config.ClientConfigLoadingRules{}
-	cfg, err := loadingRules.Load()
+	cfg, err := loadingRules.ParseRuntimeConfig()
 	if err != nil {
 		return err
 	}

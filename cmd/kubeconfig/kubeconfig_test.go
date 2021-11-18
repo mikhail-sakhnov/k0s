@@ -51,6 +51,7 @@ spec:
 	cfg, err := configGetter.FakeConfigFromFile()
 	s.NoError(err)
 
+	defer os.Remove(testutil.RuntimeFakePath)
 	caCert := `
 -----BEGIN CERTIFICATE-----
 MIIDADCCAeigAwIBAgIUW+2hawM8HgHrfxmDRV51wOq95icwDQYJKoZIhvcNAQEL
