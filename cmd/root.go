@@ -26,7 +26,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 	"github.com/spf13/viper"
-	"k8s.io/component-base/cli"
 
 	"github.com/k0sproject/k0s/cmd/airgap"
 	"github.com/k0sproject/k0s/cmd/api"
@@ -209,13 +208,10 @@ func isKubectlSubcommand() bool {
 }
 
 func Execute() {
-	if isKubectlSubcommand() {
-		os.Args = os.Args[1:]
-		os.Args[0] = "kubectl"
-		spew.Dump("ARGS BEFORE EXECUTE", os.Args)
-		os.Exit(cli.Run(kubectl.NewK0sKubectlCmd()))
-		return
-	}
+	// return back isKubectlSubCommand usage here to run by cli.Run
+	// modify isKubectlSubCommand to check not only 1 and 0 index but also support cases with -- arguments betweek subcommands (e.g. k0s --debug kc)
+	// drop kubectlsubcommand from k0s root cmd
+	// add some faked subcommand to have help for k0s kubectl
 	cmd := NewRootCmd()
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
