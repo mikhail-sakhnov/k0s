@@ -17,7 +17,7 @@ require (
 	github.com/denisbrodbeck/machineid v1.0.1
 	github.com/docker/libnetwork v0.8.0-dev.2.0.20201031180254-535ef365dc1d
 	github.com/estesp/manifest-tool/v2 v2.0.1-0.20220217152536-f3906340b65e
-	github.com/evanphx/json-patch v4.12.0+incompatible
+	github.com/evanphx/json-patch v5.6.0+incompatible
 	github.com/fsnotify/fsnotify v1.5.4
 	github.com/go-openapi/jsonpointer v0.19.5
 	github.com/go-playground/validator/v10 v10.11.0
