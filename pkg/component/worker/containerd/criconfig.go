@@ -23,8 +23,8 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/k0sproject/k0s/pkg/apis/k0s/v1beta1"
 	"github.com/k0sproject/k0s/pkg/constant"
 	"github.com/pelletier/go-toml"
@@ -33,10 +33,8 @@ import (
 	criconfig "github.com/containerd/containerd/pkg/cri/config"
 )
 
-const _importsPath = "/etc/k0s/containerd.d/*.toml"
-const containerdCRIConfigPathPosix = "/run/k0s/containerd-cri.toml"
-
 // TODO: move to K0sVars
+const containerdCRIConfigPathPosix = "/run/k0s/containerd-cri.toml"
 const containerdCRIConfigPathWindows = "C:\\var\\lib\\k0s\\run\\containerd-cri.toml"
 
 type CRIConfigurer struct {
@@ -64,7 +62,6 @@ func NewConfigurer(importsPath string) *CRIConfigurer {
 	} else {
 		c.criRuntimePath = containerdCRIConfigPathPosix
 	}
-	spew.Dump(c.loadPath, c.criRuntimePath)
 	return c
 }
 
@@ -109,7 +106,7 @@ func (c *CRIConfigurer) HandleImports() ([]string, error) {
 		} else {
 			c.log.Debugf("adding %s as-is to imports", file)
 			// Add file to imports
-			imports = append(imports, file)
+			imports = append(imports, escapedPath(file))
 		}
 	}
 
@@ -118,9 +115,19 @@ func (c *CRIConfigurer) HandleImports() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	imports = append(imports, c.criRuntimePath)
+	imports = append(imports, escapedPath(c.criRuntimePath))
 
 	return imports, nil
+}
+
+func escapedPath(s string) string {
+	// double escape for windows because containerd expects
+	// double backslash in the configuration but golang templates
+	// unescape double slash to a single slash
+	if runtime.GOOS == "windows" {
+		return strings.ReplaceAll(s, "\\", "\\\\")
+	}
+	return s
 }
 
 // We need to use custom struct so we can unmarshal the CRI plugin config only
