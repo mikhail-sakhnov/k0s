@@ -24,6 +24,7 @@ import (
 	"github.com/k0sproject/k0s/pkg/assets"
 	"github.com/k0sproject/k0s/pkg/component/manager"
 	"github.com/k0sproject/k0s/pkg/constant"
+	"github.com/k0sproject/k0s/pkg/node"
 	"github.com/k0sproject/k0s/pkg/supervisor"
 )
 
@@ -42,7 +43,7 @@ func (k KubeProxy) Init(_ context.Context) error {
 }
 
 func (k KubeProxy) Start(ctx context.Context) error {
-	node, err := getNodeName(ctx)
+	node, err := node.GetNodename("")
 	if err != nil {
 		return fmt.Errorf("can't get hostname: %v", err)
 	}
