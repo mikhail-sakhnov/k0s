@@ -25,6 +25,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const testImportsPath = "/etc/k0s/containerd.d/"
+
 func TestCRIConfigurer_hasCRIPluginConfig(t *testing.T) {
 	t.Run("should return true if config has cri plugin configs", func(t *testing.T) {
 		cfg := `
@@ -32,7 +34,7 @@ func TestCRIConfigurer_hasCRIPluginConfig(t *testing.T) {
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
     endpoint = ["https://registry-1.docker.io"]
 `
-		c := NewConfigurer()
+		c := NewConfigurer(testImportsPath)
 		hasCRIPluginConfig, err := c.hasCRIPluginConfig([]byte(cfg))
 		require.NoError(t, err)
 		require.True(t, hasCRIPluginConfig)
@@ -43,7 +45,7 @@ func TestCRIConfigurer_hasCRIPluginConfig(t *testing.T) {
 timeout = 3
 version = 2
 `
-		c := NewConfigurer()
+		c := NewConfigurer(testImportsPath)
 		hasCRIPluginConfig, err := c.hasCRIPluginConfig([]byte(cfg))
 		require.NoError(t, err)
 		require.False(t, hasCRIPluginConfig)
